@@ -15,20 +15,27 @@
             $scope.dateerror = "Please select a  date";
             return false;
             }
-        else if(input >= currentDate)
-            {
-            $scope.dateerror = "Invalid Date Selected";
-            }
-        
-        else
+        else if (input >= currentDate) {
+            $scope.dateerror = "Invalid Date of Birth Selected";
+        }
+
+        else {
+            $scope.dateerror = " ";
+
             return true;
 
+        }
 
 
     }
 
 
     $scope.save = function (patientForm) {
+        $scope.fnameError = " ";
+        $scope.lnameError = " ";
+        $scope.countrymsg = " ";
+        $scope.statemsg = " ";
+        $scope.gendermsg = " ";
 
         
          var parts = $('#datepicker').val().split('/');
@@ -42,6 +49,7 @@
 
             $http.post("/Home/Save/", $scope.patient).then(function (data) {
                 alert("Successfully Saved");
+                reset();
             },
             function (result) {
                 console.log("The request failed: " + result);
@@ -64,7 +72,7 @@
             }
             else {
 
-                $scope.fnameError = "";
+                $scope.fnameError = " ";
             }
             if (patientForm.lname.$error.required == true) {
 
@@ -75,7 +83,7 @@
             }
             else {
 
-                $scope.lnameError = "";
+                $scope.lnameError = " ";
             }
            
             if (patientForm.gender.$error.required == true) {
@@ -83,15 +91,15 @@
                 $scope.gendermsg = "Please select a gender";
             }
             else {
-                $scope.gendermsg = "";
+                $scope.gendermsg = " ";
 
             }
             if (patientForm.state.$error.required == true) {
 
                 $scope.statemsg = "Please select a state";
             }
-            else {
-                $scope.statemsg = "";
+            else { 
+                $scope.statemsg = " ";
 
             }
             if (patientForm.country.$error.required == true) {
@@ -99,7 +107,7 @@
                 $scope.countrymsg = "please select a country";
             }
             else {
-                $scope.countrymsg = "";
+                $scope.countrymsg = " ";
 
             }
 
@@ -110,7 +118,12 @@
 
 
     }
+   function reset()
+    {
+        $scope.patient = [];
+        $('#datepicker').val(" ")
 
+    }
 
 
     $scope.gridOptions = {

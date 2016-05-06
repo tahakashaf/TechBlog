@@ -16,49 +16,55 @@
 
         <form name="patientForm" ng-submit="save(patientForm)" novalidate>
             <div class="form-group">
-                First name: <input type="text" name="fname" ng-model="patient.FirstName" required ng-pattern="/^[A-z]+$/"><br>
+                <label for="firstname">First name:</label>
+                <input type="text" class="form-control" name="fname" ng-model="patient.FirstName" required ng-pattern="/^[A-z]+$/"><br>
 
 
-                {{ fnameError }}
+                <span class="alert-danger">{{ fnameError }}</span>
              
 
             </div>
          
 
             <div class="form-group">
-            Last name: <input type="text" ng-model="patient.LastName" name="lname" required ng-pattern="/^[A-z]+$/"><br>
-                {{ lnameError }}
+                <label for="lastname">Last Name:</label>
+                <input type="text" class="form-control"ng-model="patient.LastName" name="lname" required ng-pattern="/^[A-z]+$/"><br>
+                <span class="alert-danger">{{ lnameError }}</span>
             </div>
 
             
             <div class="form-group">
-                <p>Date: <input type="text" id="datepicker" name="DateOfBirth" ng-model="DateOfBirth"></p>
-                {{ dateerror }}
+                <label for="Date">Date of Birth:</label>
+                <p> <input class="form-control" type="text" id="datepicker" name="DateOfBirth" ng-model="DateOfBirth"></p>
+                <span class="alert-danger">{{ dateerror }}</span>
             </div>
             <div class="form-group">
-                {{ gendermsg }}
-                <select ng-model="patient.Gender" ng-options="gender for gender in genders" required name="gender">
+            
+                <label for="Gender">Gender:</label>
+                <select class="form-control" ng-model="patient.Gender" ng-options="gender for gender in genders" required name="gender">
                     <option value="">-- Select  --</option>
                 </select>
+                <span class="alert-danger">{{ gendermsg }}</span>
             </div>
 
             <div class="form-group">
-                {{ countrymsg }}
-                <select name="country" data-ng-model="patient.Country" data-ng-options="c.CountryId as c.CountryName for c in countries" data-ng-change="GetStates(patient.Country)" required>
+                <label for="Country">Country:</label>
+                <select class="form-control" name="country" data-ng-model="patient.Country" data-ng-options="c.CountryId as c.CountryName for c in countries" data-ng-change="GetStates(patient.Country)" required>
                     <option value="">-- Select Country --</option>
                 </select>
+                <span class="alert-danger">{{ countrymsg }}</span>
             </div>
 
             <div class="form-group">
-                {{ statemsg }}
-               
-                <select name="state"data-ng-model="patient.state" data-ng-disabled="!states" data-ng-options="s.StateId as s.StateName for s in states" required>
+                <label for="State">State:</label>
+                <select class="form-control" name="state"data-ng-model="patient.state" data-ng-disabled="!states" data-ng-options="s.StateId as s.StateName for s in states" required>
                     <option value="">-- Select State --</option>
                 </select>
+                <span class="alert-danger">{{ statemsg }}</span>
             </div>
-            <div class="form-control-static">
-                <input type="submit" value="Submit" />
-            </div>
+            
+                <input type="submit" value="Submit" class="btn btn-default" />
+            
         </form>
       
 
