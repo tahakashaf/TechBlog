@@ -1,14 +1,88 @@
-﻿<html ng-app>
-<head>
+﻿
+<script>
+    $(function () {
+        $("#datepicker").datepicker();
+    });
+</script>
 
-    <title></title>
-</head>
+
+
+
 <body>
+    <div data-ng-controller="patientController">
+        <h3>@Html.ActionLink("ViewAll", "GetAllPatients", "Home")</h3>
 
-    <input type="text" ng-model="test" />
-    {{ test }}
+        <br /><br />
+
+        <form name="patientForm" ng-submit="save(patientForm)" novalidate>
+            <div class="form-control">
+                First name: <input type="text" name="fname" ng-model="patient.FirstName" required ng-pattern="/^[A-z]+$/"><br>
+
+
+                {{ fnameError }}
+
+            </div>
+            <br /><br /><br />
+
+            <div class="form-control">
+            Last name: <input type="text" ng-model="patient.LastName" name="lname" required ng-pattern="/^[A-z]+$/"><br>
+                {{ lnameError }}
+            </div>
+
+            <br /><br /><br />
+            <div class="form-control">
+                <p>Date: <input type="text" id="datepicker" name="DateOfBirth" ng-model="DateOfBirth"></p>
+
+
+
+
+                <br />
+                <br />
+                <br />
+            </div>
+            <div class="form-control">
+                <select ng-model="patient.Gender" ng-options="gender for gender in genders" required>
+                    <option value="">-- Select  --</option>
+                </select>
+            </div>
+
+            <div class="form-control">
+                <select data-ng-model="patient.Country" data-ng-options="c.CountryId as c.CountryName for c in countries" data-ng-change="GetStates(patient.Country)" required>
+                    <option value="">-- Select Country --</option>
+                </select>
+            </div>
+
+            <div class="form-control">
+                <select data-ng-model="patient.state" data-ng-disabled="!states" data-ng-options="s.StateId as s.StateName for s in states" required>
+                    <option value="">-- Select State --</option>
+                </select>
+            </div>
+
+            <input type="submit" value="Submit" />
+
+        </form>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
 
 </body>
-
-
-</html>

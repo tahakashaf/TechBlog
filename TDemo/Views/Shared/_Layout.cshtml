@@ -1,11 +1,19 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="patientApp">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title TDEMO</title>
+
     @Styles.Render("~/Content/css")
-    
+    <link href="~/Content/ui-grid.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/ui-grid.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/ng/app.js"></script>
+    <script src="~/Scripts/ng/controller.js"></script>
 
 </head>
 <body>
@@ -21,11 +29,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 </ul>
-             
+
             </div>
         </div>
     </div>
@@ -37,8 +45,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/angular")
-  
-    @RenderSection("scripts", required: false)
+
+
 </body>
 </html>
