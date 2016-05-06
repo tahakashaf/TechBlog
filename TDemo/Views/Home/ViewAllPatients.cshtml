@@ -1,5 +1,11 @@
 ﻿
+@Html.ActionLink("Create a New Patient", "Index", "Home", null, new { @class = "navbar-brand" })
+<br />
+
+<h3>List of Patients</h3>
+
 <div ng-controller="patientController">
-    <div ui-grid="gridOptions" class="grid"></div>
+    <div ui-grid="gridOptions" ui-grid-pagination class="grid"></div>
 </div>
+
 

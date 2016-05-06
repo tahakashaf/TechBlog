@@ -1,1 +1,1 @@
-﻿var patientApp = angular.module("patientApp", ['ui.grid']);
+﻿var patientApp = angular.module("patientApp", ['ui.grid', 'ui.grid.pagination']);

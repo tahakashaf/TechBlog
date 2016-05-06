@@ -6,18 +6,20 @@
     var currentDate = new Date();
     currentDate.setHours(0,0,0,0)
     
-   
-    
-  
 
     function CheckDate(input) {
         console.log(input + "input date");
         console.log(currentDate + "current date")
 
-        if (input == "Invalid Date" || input >= currentDate) {
-            $scope.dateerror = "Date validation";
+        if (input == "Invalid Date" ) {
+            $scope.dateerror = "Please select a  date";
             return false;
-        }
+            }
+        else if(input >= currentDate)
+            {
+            $scope.dateerror = "Invalid Date Selected";
+            }
+        
         else
             return true;
 
@@ -39,7 +41,7 @@
             $scope.patient.DateOfBirth = $('#datepicker').val();
 
             $http.post("/Home/Save/", $scope.patient).then(function (data) {
-                alert("ok");
+                alert("Successfully Saved");
             },
             function (result) {
                 console.log("The request failed: " + result);
@@ -49,31 +51,56 @@
         }
 
         else {
-            console.log("do validations");
+         
 
             if (patientForm.fname.$error.required == true) {
-                $scope.fnameError = "Required";
+                $scope.fnameError = "FirstName is Required";
 
             }
-            if (patientForm.fname.$error.pattern == true) {
-                $scope.fError = "AlphabetOnly";
+           
+           else if (patientForm.fname.$error.pattern == true) {
+                $scope.fnameError = "Alphabets Only";
 
+            }
+            else {
+
+                $scope.fnameError = "";
             }
             if (patientForm.lname.$error.required == true) {
 
-                $scope.lnameError = "Required";
+                $scope.lnameError = "Last Name Required";
             }
+            else if (patientForm.lname.$error.pattern == true) {
+                $scope.lnameError = "Alphabets Only";
+            }
+            else {
+
+                $scope.lnameError = "";
+            }
+           
             if (patientForm.gender.$error.required == true) {
 
-                $scope.gendermsg = "Required";
+                $scope.gendermsg = "Please select a gender";
+            }
+            else {
+                $scope.gendermsg = "";
+
             }
             if (patientForm.state.$error.required == true) {
 
-                $scope.statemsg = "Required";
+                $scope.statemsg = "Please select a state";
+            }
+            else {
+                $scope.statemsg = "";
+
             }
             if (patientForm.country.$error.required == true) {
 
-                $scope.countrymsg = "Required";
+                $scope.countrymsg = "please select a country";
+            }
+            else {
+                $scope.countrymsg = "";
+
             }
 
 
@@ -87,11 +114,12 @@
 
 
     $scope.gridOptions = {
-
+        paginationPageSizes: [5, 10, 15],
+        paginationPageSize: 5,
         columnDefs: [
           { field: 'FirstName' },
           { field: 'LastName' },
-          { field: 'DateOfBirth', cellFilter: 'date:\'MM/dd/yyyy \'' },
+          { field: 'DateOfBirth', cellFilter: 'date:\'dd/MMM/yyyy \'' },
           { field: 'Gender' },
           { field: 'Country' },
           { field: 'State' },
@@ -99,14 +127,6 @@
 
         ]
     };
-
-
-
-
-
-
-
-
 
 
     GetAll();
@@ -148,7 +168,7 @@
     }
 
     $scope.GetStates = function (id) {
-        alert("hi" + id);
+    
         var countryId = $scope.country;
         if (id) {
             $http({
@@ -168,7 +188,7 @@
 
 
 
-
+   
 
 
 
