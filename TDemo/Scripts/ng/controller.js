@@ -4,14 +4,16 @@
 
 
     $scope.currentDate = new Date();
-   
-    $scope.inputDate = new Date($('#datepicker').val()).toDateString();
     
-   
+    $scope.inputDate =  Date.parse(date);
+    
+    var date;
 
     function CheckDate() {
-        if ($('#datepicker').val() == "" && $scope.inputDate >= $scope.currentDate)
+        if ($('#datepicker').val() == "" && $scope.inputDate >= $scope.currentDate) {
+            $scope.dateerror = "Date sahi ni";
             return false;
+        }
         else
             return true;
 
@@ -21,8 +23,8 @@
 
 
     $scope.save = function (patientForm) {
-        console.log((typeof($('#datepicker').val())));
-        console.log($scope.inputDate);
+        date = $('#datepicker').val();
+        $scope.inputDate = Date.parse(date);
         console.log(CheckDate());
         if (patientForm.$valid && CheckDate()) {
             conosle.log("submit hoga")
@@ -40,16 +42,31 @@
 
         else {
             console.log("do validations");
+
             if (patientForm.fname.$error.required == true) {
                 $scope.fnameError = "Required";
+
+            }
+            if (patientForm.fname.$error.pattern == true) {
+                $scope.fError = "AlphabetOnly";
 
             }
             if (patientForm.lname.$error.required == true) {
 
                 $scope.lnameError = "Required";
             }
+            if (patientForm.gender.$error.required == true) {
 
-           
+                $scope.gendermsg = "Required";
+            }
+            if (patientForm.state.$error.required == true) {
+
+                $scope.statemsg = "Required";
+            }
+            if (patientForm.country.$error.required == true) {
+
+                $scope.countrymsg = "Required";
+            }
 
 
 

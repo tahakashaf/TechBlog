@@ -10,56 +10,59 @@
 
 <body>
     <div data-ng-controller="patientController">
-        <h3>@Html.ActionLink("ViewAll", "GetAllPatients", "Home")</h3>
+        <h3>@Html.ActionLink("View List of Patients", "GetAllPatients", "Home")</h3>
 
         <br /><br />
 
         <form name="patientForm" ng-submit="save(patientForm)" novalidate>
-            <div class="form-control">
+            <div class="form-group">
                 First name: <input type="text" name="fname" ng-model="patient.FirstName" required ng-pattern="/^[A-z]+$/"><br>
 
 
                 {{ fnameError }}
+                {{ fError }}
 
             </div>
-            <br /><br /><br />
+         
 
-            <div class="form-control">
+            <div class="form-group">
             Last name: <input type="text" ng-model="patient.LastName" name="lname" required ng-pattern="/^[A-z]+$/"><br>
                 {{ lnameError }}
             </div>
 
-            <br /><br /><br />
-            <div class="form-control">
+            
+            <div class="form-group">
                 <p>Date: <input type="text" id="datepicker" name="DateOfBirth" ng-model="DateOfBirth"></p>
 
 
 
-
-                <br />
-                <br />
-                <br />
+               
+           
             </div>
-            <div class="form-control">
-                <select ng-model="patient.Gender" ng-options="gender for gender in genders" required>
+            <div class="form-group">
+                {{ gendermsg }}
+                <select ng-model="patient.Gender" ng-options="gender for gender in genders" required name="gender">
                     <option value="">-- Select  --</option>
                 </select>
             </div>
 
-            <div class="form-control">
-                <select data-ng-model="patient.Country" data-ng-options="c.CountryId as c.CountryName for c in countries" data-ng-change="GetStates(patient.Country)" required>
+            <div class="form-group">
+                {{ countrymsg }}
+                <select name="country" data-ng-model="patient.Country" data-ng-options="c.CountryId as c.CountryName for c in countries" data-ng-change="GetStates(patient.Country)" required>
                     <option value="">-- Select Country --</option>
                 </select>
             </div>
 
-            <div class="form-control">
-                <select data-ng-model="patient.state" data-ng-disabled="!states" data-ng-options="s.StateId as s.StateName for s in states" required>
+            <div class="form-group">
+                {{ statemsg }}
+               
+                <select name="state"data-ng-model="patient.state" data-ng-disabled="!states" data-ng-options="s.StateId as s.StateName for s in states" required>
                     <option value="">-- Select State --</option>
                 </select>
             </div>
-
-            <input type="submit" value="Submit" />
-
+            <div class="form-control-static">
+                <input type="submit" value="Submit" />
+            </div>
         </form>
 
 
