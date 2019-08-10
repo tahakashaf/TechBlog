@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan
+//@ComponentScan
 //Controller are registered to Spring IOC container by default
 public class TechBlogApp  {
 
